@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"os"
 
-	spotify "github.com/maantjemol/spotify-bpm/api/spotify"
+	spotify "github.com/maantjemol/spotify-bpm/utils"
 )
 
 type Response struct {

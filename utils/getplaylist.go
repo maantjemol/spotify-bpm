@@ -1,4 +1,4 @@
-package spotify
+package utils
 
 import (
 	"encoding/json"
