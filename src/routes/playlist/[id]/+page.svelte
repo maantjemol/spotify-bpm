@@ -29,15 +29,15 @@
   <p>{song.artistName}</p>
 {/each} -->
 <section class="mx-[10%] mt-20">
-  <h1 class="font-medium text-4xl mb-4">Tempos and keys for playlist:</h1>
+  <h1 class="font-medium text-4xl mb-4">Tempos en toonsoort voor playlist:</h1>
   <Separator />
   <div class="mt-4">
     <Table.Root>
       <Table.Header>
         <Table.Row>
-          <Table.Head>Name</Table.Head>
-          <Table.Head>Artist</Table.Head>
-          <Table.Head>Key</Table.Head>
+          <Table.Head>Naam</Table.Head>
+          <Table.Head>Artiest</Table.Head>
+          <Table.Head>Toonsoort</Table.Head>
           <Table.Head>Time signature</Table.Head>
           <Table.Head class="text-right">BPM</Table.Head>
         </Table.Row>
