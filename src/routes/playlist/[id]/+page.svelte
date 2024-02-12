@@ -13,6 +13,8 @@
 	import { tableview } from '$lib/stores';
 	import { AspectRatio } from '$lib/components/ui/aspect-ratio';
 	export let data: PageData;
+  import { fade } from 'svelte/transition';
+
 
   let loading = true;
   let playlistData: Playlist;
@@ -39,8 +41,21 @@
 
 </script>
 {#if loading}
-<div class="items-center justify-center flex w-screen h-screen">
-  <p>Loading...</p>
+<div class="items-center justify-center flex w-screen h-screen" transition:fade>
+  <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={30}
+  height={30}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="20"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="animate-spin"
+>
+  <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+</svg>
 </div>
 {:else}
 <!-- {#each playlistData.tracks as song}
