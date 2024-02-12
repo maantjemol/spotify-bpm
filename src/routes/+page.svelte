@@ -3,6 +3,7 @@
 	import Input from "$lib/components/ui/input/input.svelte";
 	import { Separator } from "$lib/components/ui/separator";
   import { goto } from '$app/navigation';
+	import { onMount } from "svelte";
 
   let spotifyUrl = "";
 
@@ -22,8 +23,8 @@
 <section class="flex items-center justify-center w-screen h-screen flex-col px-[10%]">
   <h1 class="font-medium text-4xl">Playlist zoeken</h1>
   <Separator class="w-[100px] my-4"/>
-  <div class="w-[500px] flex gap-4">
-    <Input placeholder="playlist url" type="search" bind:value={spotifyUrl} />
+  <div class="max-w-[500px] w-full flex gap-4 sm:flex-row flex-col">
+    <Input placeholder="Playlist link" type="search" bind:value={spotifyUrl} />
     <Button disabled={!spotifyId} on:click={() => goto(`/playlist/${spotifyId}`)}>Zoeken</Button>
   </div>
 </section>
