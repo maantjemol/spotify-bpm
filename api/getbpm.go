@@ -70,12 +70,21 @@ func Spotify(w http.ResponseWriter, r *http.Request) {
 
 	resp.Tracks = make([]spotify.RespTrack, len(playlist))
 
+	var songIDs []string
+
 	for i := 0; i < len(playlist); i++ {
+		songIDs = append(songIDs, playlist[i].ID)
+	}
+
+	songFeatures, err := spotify.GetSongFeatures(songIDs, ACCESS_TOKEN)
+
+	if (err != nil){
+		fmt.Println(err)
+	}
+
+	for i := 0; i < len(songFeatures.AudioFeatures); i++ {
 		song := playlist[i]
-		songFeatures, err := spotify.GetSongFeatures(song.ID, ACCESS_TOKEN)
-		if (err != nil){
-			println("couln't get id")
-		}
+		songFeatures := songFeatures.AudioFeatures[i]
 		song.BPM = int(songFeatures.Tempo)
 		song.Key = int(songFeatures.Key)
 		song.Url = "https://open.spotify.com/track/" + song.ID

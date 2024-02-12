@@ -7,6 +7,7 @@ import (
 	"net/http"
 )
 
+
 type SongData struct {
 	Acousticness     float64 `json:"acousticness"`
 	AnalysisURL      string  `json:"analysis_url"`
@@ -28,9 +29,18 @@ type SongData struct {
 	Valence          float64 `json:"valence"`
 }
 
-func GetSongFeatures(songId string, token string) (SongData, error) {
+type RespData struct {
+	AudioFeatures []SongData `json:"audio_features"`
+}
 
-	url := "https://api.spotify.com/v1/audio-features/" + songId
+func GetSongFeatures(songIds []string, token string) (RespData, error) {
+
+	var songIDstring string
+	for _, songId := range songIds {
+		songIDstring += songId + ","
+	}
+
+	url := "https://api.spotify.com/v1/audio-features/?ids=" + songIDstring
 
 	req, _ := http.NewRequest("GET", url, nil)
 
@@ -41,7 +51,7 @@ func GetSongFeatures(songId string, token string) (SongData, error) {
 
 	defer res.Body.Close()
 
-	var songData SongData
+	var songData RespData
 	
 	err := json.Unmarshal(body, &songData)
 
